@@ -1,0 +1,56 @@
+{
+  "name": "dsh-voice-ru",
+  "version": "0.2.0",
+  "description": "Russian speech recognition for DSH voice input: local NVIDIA Nemotron 3.5 ASR 0.6B (GGUF) on transcribe.cpp, with model and runtime downloaded on first use.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "scripts": {
+    "test": "node test/host-smoke.mjs",
+    "test:fresh": "node test/runtime-smoke.mjs",
+    "test:ffi": "node test/ffi-smoke.mjs",
+    "test:lang": "node test/lang-probe.mjs",
+    "test:features": "node test/features.mjs"
+  },
+  "dependencies": {
+    "koffi": "^2.16.3"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "speech-to-text",
+    "asr",
+    "voice-input",
+    "russian",
+    "nemotron",
+    "gguf",
+    "transcribe.cpp"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ripls56/dsh-voice-ru.git"
+  },
+  "license": "MIT"
+}

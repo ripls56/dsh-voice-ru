@@ -1,0 +1,9 @@
+# Normalize line endings for a repo that is edited on Windows, Linux and macOS.
+* text=auto eol=lf
+
+# Audio fixtures and any native artefacts stay untouched.
+*.wav binary
+*.dll binary
+*.so binary
+*.dylib binary
+*.tar.gz binary
