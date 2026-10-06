@@ -8,8 +8,10 @@ Streaming 0.6B (GGUF) на нативном рантайме transcribe.cpp. В�
 интернет нужен только для первой загрузки файлов.
 
 *English: local speech-to-text provider for DSH voice input, adding Russian (and 28
-more locales) via NVIDIA Nemotron 3.5 ASR on transcribe.cpp. Model and native
-runtime download on first use; no binaries are stored in this repository.*
+more locales) via NVIDIA Nemotron 3.5 ASR on transcribe.cpp. No native libraries and
+no model weights are stored in this repository — both are downloaded on first use and
+verified by sha256. The only binary files here are three tiny synthetic WAV fixtures
+used by the tests.*
 
 ## Требования
 
@@ -121,9 +123,13 @@ npm run test:lang      # сравнение языковых подсказок 
 npm run test:features  # какие фичи модели поддержаны
 ```
 
-`test:fresh` проверяет ровно тот путь, который проходит новый пользователь
-(модель берётся из кэша, рантайм скачивается по-настоящему; `--download-model`
-заставляет скачать и модель).
+`test:fresh` проверяет ровно тот путь, который проходит новый пользователь: рантайм
+скачивается по-настоящему, модель берётся из кэша (`--download-model` заставляет
+скачать и её, 751 МБ).
+
+Аудиофикстуры в `test/*.wav` — синтетическая речь (Windows SAPI, голоса Irina и
+David), собранная для проверки русского, английского и смешанного текста. Ничего
+личного в них нет; `test/join-wav.mjs` склеивает такие файлы из кусков.
 
 ## Конфигурация (необязательно)
 
@@ -144,6 +150,8 @@ npm run test:features  # какие фичи модели поддержаны
 
 - Максимальная длительность записи — лимит voice-input DSH (120 с).
 - Первый запуск требует сети; дальше всё офлайн.
+- Докачки нет: если загрузка 751 МБ оборвалась, она начнётся заново (частичный
+  файл удаляется, в кэш попадает только проверенный целиком файл).
 - Модель распространяется по лицензии OpenMDW-1.1, рантайм и ggml — MIT.
 
 ## Лицензии и источники

@@ -86,8 +86,11 @@ export function mockContext() {
 	return { ctx, provider: () => provider, dispose: async () => await effectDisposer?.() };
 }
 
-/** Wait until the provider leaves a transient preparation phase. */
-export async function settledPreparation(provider, timeoutMs = 300000) {
+/**
+ * Wait until the provider leaves a transient preparation phase. The default
+ * budget covers a full 751 MB model download on a slow link.
+ */
+export async function settledPreparation(provider, timeoutMs = 1_800_000) {
 	const started = Date.now();
 	while (Date.now() - started < timeoutMs) {
 		const { phase } = provider.preparation.snapshot();
