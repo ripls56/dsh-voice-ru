@@ -1,6 +1,6 @@
 {
   "name": "dsh-voice-ru",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Russian speech recognition for DSH voice input: local NVIDIA Nemotron 3.5 ASR 0.6B (GGUF) on transcribe.cpp, with model and runtime downloaded on first use.",
   "type": "module",
   "main": "lib/index.js",
